@@ -2,6 +2,7 @@ package ca.durhamcollege;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -38,15 +39,21 @@ public class WorkTicket
         return id;
     }
 
-    public void setId(String id)
+    public void setId()
     {
-        if(id.length() <= 0)
+        //Declarations
+        Scanner keyboard = new Scanner(System.in);
+        boolean dirtyFlag = true;
+
+        while(dirtyFlag)
         {
-            throw new IllegalArgumentException("Please do not keep it empty");
-        }
-        else
-        {
-            this.id = id;
+            System.out.print("\nPlease enter the day: ");
+            day = keyboard.nextInt();
+            if (id.length() <= 0) {
+                throw new IllegalArgumentException("Please do not keep it empty");
+            } else {
+                this.id = id;
+            }
         }
     }
 
@@ -55,9 +62,85 @@ public class WorkTicket
         return date;
     }
 
-    public void setDate(LocalDate date)
+    public void setDate()
     {
+        //Constants
+        final int MAX_YEAR = 2099;
+        final int MIN_YEAR = 2000;
+        final int MAX_MONTH = 12;
+        final int MIN_MONTH = 1;
+        final int MAX_DAY = 30;
+        final int MIN_DAY = 1;
+        //Variables
+        Scanner keyboard = new Scanner(System.in);
+        boolean dirtyFlag = true;
+        int day = 0, month = 0, year = 0;
+
+        try
+        {
+
+
+
+        while(dirtyFlag)
+        {
+            System.out.print("\nPlease enter the day: ");
+            day = keyboard.nextInt();
+            if (day >= MIN_DAY && day <= MAX_DAY)
+            {
+                dirtyFlag = false;
+            }
+            else
+            {
+                System.out.print("\nSorry, that day was invalid. Must be between 1 and 30. Try Again.\n");
+            }
+        }
+        dirtyFlag = true;
+        System.out.printf("Day is: %d\n", day);
+
+        while(dirtyFlag)
+        {
+            System.out.print("\nPlease enter the month: ");
+            month = keyboard.nextInt();
+            if (month >= MIN_MONTH && month <= MAX_MONTH)
+            {
+                dirtyFlag = false;
+            }
+            else
+            {
+                System.out.print("\nSorry, that month was invalid. Must be between 1 and 12. Try Again.\n");
+            }
+        }
+        dirtyFlag = true;
+        System.out.printf("Month is: %d\n", month);
+
+        while(dirtyFlag)
+        {
+            System.out.print("\nPlease enter the Year: ");
+            year = keyboard.nextInt();
+            if (year >= MIN_YEAR && year <= MAX_YEAR)
+            {
+                dirtyFlag = false;
+            }
+            else
+            {
+                System.out.print("\nSorry, that year was invalid. Must be between 2000 and 2099. Try Again.\n");
+            }
+        }
+        dirtyFlag = true;
+        System.out.printf("Year is: %d\n", year);
+
+        LocalDate date;
+        date = LocalDate.of(year, month, day);
+    //    System.out.printf("The Date is: %s", date.toString());
+
         this.date = date;
+
+        }
+        catch(DateTimeException dte)
+        {
+            System.out.print("\nDATE EXCEPTION: Something went wrong, try again.");
+            keyboard.nextLine();
+        }
     }
 
     public String getDescription()
@@ -81,7 +164,7 @@ public class WorkTicket
 
         setNumber(number);
         setId(id);
-        setDate(date);
+        setDate();
         setDescription(description);
 
         return true;
@@ -102,13 +185,9 @@ public class WorkTicket
     }
 
     //ValidateDate Function
-    static LocalDate ValidateDate()
+    public LocalDate ValidateDate()
     {
-        Scanner keyboard = new Scanner(System.in);
-        LocalDate date = null;
-        int day = 0, month = 0, year = 0;
-        System.out.print("Please enter the day");
-        day = keyboard.nextInt();
+
 
 
         return date;
@@ -117,18 +196,18 @@ public class WorkTicket
     //Default Constructor
     WorkTicket()
     {
-        int number = 0;
-        LocalDate date = null;
-        String description = null;
-        String id = null;
+        this.number = 0;
+        this.id = null;
+        this.date = null;
+        this.description = null;
     }
     //Object Constructor
     WorkTicket(@NotNull WorkTicket ticket)
     {
-        setNumber(number);
-        setId(id);
-        setDate(date);
-        setDescription(description);
+        this.number = ticket.number;
+        this.id = ticket.id;
+        this.date = ticket.date;
+        this.description = ticket.description;
     }
     //Full Constructor
     WorkTicket(int number, String id, LocalDate date, String desc)
