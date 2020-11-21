@@ -13,8 +13,6 @@ public class Main
     public static void main(String[] args)
     {
         //Declarations
-
-
         //Variables
         Scanner keyboard = new Scanner(System.in);
         boolean dirtyFlag = true;
@@ -28,14 +26,14 @@ public class Main
             try
             {
 
-                ticket.setDate();
+                ticket.SetWorkTicket();
                 System.out.println(ticket.toString());
                 endFlag = false;
 
             }
             catch(IllegalArgumentException iae)
             {
-                System.out.print("\n INVALID");
+                System.out.printf("\n INVALID: %s", iae.toString());
                 keyboard.nextLine();
                 endFlag = true;
             }

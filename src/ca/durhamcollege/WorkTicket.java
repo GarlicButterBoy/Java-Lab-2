@@ -22,16 +22,27 @@ public class WorkTicket
         return number;
     }
 
-    public void setNumber(int number)
+    public void setNumber()
     {
-        if(number < 0)
+        //Declarations
+        Scanner keyboard = new Scanner(System.in);
+        boolean dirtyFlag = true;
+        int number = 0;
+        while(dirtyFlag)
         {
-            throw new IllegalArgumentException("ERROR! only positive numbers");
+            System.out.print("\nPlease enter a ticket number: ");
+            number = keyboard.nextInt();
+            if(number <= 0)
+            {
+                throw new IllegalArgumentException("ERROR! only positive numbers");
+            }
+            else
+            {
+                this.number = number;
+                dirtyFlag = false;
+            }
         }
-        else
-        {
-            this.number = number;
-        }
+
     }
 
     public String getId()
@@ -44,17 +55,23 @@ public class WorkTicket
         //Declarations
         Scanner keyboard = new Scanner(System.in);
         boolean dirtyFlag = true;
-
+        String id = null;
         while(dirtyFlag)
         {
-            System.out.print("\nPlease enter the day: ");
-            day = keyboard.nextInt();
-            if (id.length() <= 0) {
+            System.out.print("\nPlease enter a custom ID: ");
+            id = keyboard.nextLine();
+            if (id.length() <= 0)
+            {
                 throw new IllegalArgumentException("Please do not keep it empty");
-            } else {
+            }
+            else
+            {
                 this.id = id;
+                dirtyFlag = false;
             }
         }
+
+
     }
 
     public LocalDate getDate()
@@ -148,24 +165,37 @@ public class WorkTicket
         return description;
     }
 
-    public void setDescription(String description)
+    public void setDescription()
     {
-        if(description.length() <= 0)
+
+        //Declarations
+        Scanner keyboard = new Scanner(System.in);
+        boolean dirtyFlag = true;
+        String description = null;
+        while(dirtyFlag)
         {
-            throw new IllegalArgumentException("Please do not keep it empty");
+            System.out.print("\nPlease enter a custom ID: ");
+            description = keyboard.nextLine();
+            if(description.length() <= 0)
+            {
+                throw new IllegalArgumentException("Please do not keep it empty");
+            }
+            else
+            {
+                this.description = description;
+                dirtyFlag = false;
+            }
         }
-        else {
-            this.description = description;
-        }
+
     }
 
     public  boolean SetWorkTicket()
     {
 
-        setNumber(number);
-        setId(id);
+        setNumber();
+        setId();
         setDate();
-        setDescription(description);
+        setDescription();
 
         return true;
     }
@@ -184,14 +214,6 @@ public class WorkTicket
         return outputStr;
     }
 
-    //ValidateDate Function
-    public LocalDate ValidateDate()
-    {
-
-
-
-        return date;
-    }
 
     //Default Constructor
     WorkTicket()
@@ -218,6 +240,7 @@ public class WorkTicket
         this.description = desc;
     }
 
-
     //public methods
+
+
 }
