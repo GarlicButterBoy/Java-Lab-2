@@ -110,6 +110,7 @@ public class WorkTicket
         System.out.print("Please enter the day");
         day = keyboard.nextInt();
 
+
         return date;
     }
 
