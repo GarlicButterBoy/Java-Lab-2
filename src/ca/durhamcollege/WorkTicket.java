@@ -1,6 +1,9 @@
 package ca.durhamcollege;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class WorkTicket
 {
@@ -13,7 +16,6 @@ public class WorkTicket
     public String description;
 
     //public properties (setters/getters)
-
     public int getNumber()
     {
         return number;
@@ -25,8 +27,10 @@ public class WorkTicket
         {
             throw new IllegalArgumentException("ERROR! only positive numbers");
         }
-
-        this.number = number;
+        else
+        {
+            this.number = number;
+        }
     }
 
     public String getId()
@@ -39,9 +43,9 @@ public class WorkTicket
         if(id.length() <= 0)
         {
             throw new IllegalArgumentException("Please do not keep it empty");
-
         }
-        else {
+        else
+        {
             this.id = id;
         }
     }
@@ -97,7 +101,19 @@ public class WorkTicket
         return outputStr;
     }
 
-    //constructors
+    //ValidateDate Function
+    static LocalDate ValidateDate()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        LocalDate date = null;
+        int day = 0, month = 0, year = 0;
+        System.out.print("Please enter the day");
+        day = keyboard.nextInt();
+
+        return date;
+    }
+
+    //Default Constructor
     WorkTicket()
     {
         int number = 0;
@@ -105,8 +121,22 @@ public class WorkTicket
         String description = null;
         String id = null;
     }
-
-
+    //Object Constructor
+    WorkTicket(@NotNull WorkTicket ticket)
+    {
+        setNumber(number);
+        setId(id);
+        setDate(date);
+        setDescription(description);
+    }
+    //Full Constructor
+    WorkTicket(int number, String id, LocalDate date, String desc)
+    {
+        this.number = number;
+        this.id = id;
+        this.date = date;
+        this.description = desc;
+    }
 
 
     //public methods
