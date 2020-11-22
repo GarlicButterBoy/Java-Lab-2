@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
-
-
 public class Main
 {
 
@@ -15,9 +12,7 @@ public class Main
         //Declarations
         //Variables
         Scanner keyboard = new Scanner(System.in);
-        boolean dirtyFlag = true;
         boolean endFlag = true;
-        int day = 0, month = 0, year = 0;
         WorkTicket ticket = new WorkTicket();
 
         do

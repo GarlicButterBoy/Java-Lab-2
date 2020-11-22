@@ -174,7 +174,7 @@ public class WorkTicket
         String description = null;
         while(dirtyFlag)
         {
-            System.out.print("\nPlease enter a custom ID: ");
+            System.out.print("\nPlease enter the reason for making a ticket: ");
             description = keyboard.nextLine();
             if(description.length() <= 0)
             {
@@ -189,15 +189,13 @@ public class WorkTicket
 
     }
 
-    public  boolean SetWorkTicket()
+    public void SetWorkTicket()
     {
 
         setNumber();
         setId();
         setDate();
         setDescription();
-
-        return true;
     }
 
     @Override
@@ -239,8 +237,5 @@ public class WorkTicket
         this.date = date;
         this.description = desc;
     }
-
-    //public methods
-
 
 }
